@@ -1,0 +1,4 @@
+# Раздел 2
+## Съкращения, правила и процедури
+
+<!-- https://crc.bg/files/URChS/Radioamateur/Class2AktualiziranRazdel2_2022.pdf -->
