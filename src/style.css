@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[type="checkbox"]:focus, [type="radio"]:focus {
+    @apply ring-0 ring-offset-0 outline outline-blue-600 outline-offset-2;
+}
+
+@layer utilities {
+    .flip {
+        transform: rotateY(180deg);
+    }
+
+    .backface-hidden {
+        backface-visibility: hidden;
+    }
+
+    .preserve-3d {
+        transform-style: preserve-3d;
+    }
+}
