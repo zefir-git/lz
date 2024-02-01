@@ -78,6 +78,7 @@ export default class CrcRevisePage extends Page {
             for (const option of document.querySelectorAll<HTMLInputElement>("[name=revise-type]")) option.checked = false;
             document.querySelector<HTMLInputElement>("[name=revise-type][value=" + reviseType + "]")!.checked = true;
         }
+        else document.querySelector<HTMLInputElement>("[name=revise-type][value=answers]")!.checked = true;
         document.querySelector("form#options")!.addEventListener("submit", () => {
             this.resetQuestions();
             this.renderQuestions(tree)
