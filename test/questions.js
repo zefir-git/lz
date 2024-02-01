@@ -34,7 +34,7 @@ async function exec(cmd) {
 }
 
 
-const QUESTIONS_DIR = "./questions/";
+const QUESTIONS_DIR = "./public/questions/";
 
 describe("presence of `index.md` file in all question directories", function () {
     it("should check if all directories have an index.md file", async function () {
@@ -57,7 +57,7 @@ describe("presence of `index.md` file in all question directories", function () 
 
 describe("validate questions tree.json", function () {
     it("should be present", async function () {
-        await fs.access("questions/tree.json", fs.constants.R_OK);
+        await fs.access(path.join(QUESTIONS_DIR, "tree.json"), fs.constants.R_OK);
     });
 
     it("should be up-to-date", async function () {
