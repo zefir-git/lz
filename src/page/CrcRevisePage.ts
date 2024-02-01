@@ -48,14 +48,14 @@ export default class CrcRevisePage extends Page {
       <fieldset class="flex gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200">
         <div class="group">
           <label class="cursor-pointer rounded-full px-2.5 py-1 text-gray-500 group-has-[input:checked]:bg-blue-600 group-has-[input:checked]:text-white">
-            <input type="radio" name="revise-type" value="flashcards" class="sr-only">
-            <span>Флаш карти</span>
+            <input type="radio" name="revise-type" value="answers" class="sr-only">
+            <span>Отговори</span>
           </label>
         </div>
         <div class="group">
           <label class="cursor-pointer rounded-full px-2.5 py-1 text-gray-500 group-has-[input:checked]:bg-blue-600 group-has-[input:checked]:text-white">
-            <input type="radio" name="revise-type" value="answers" class="sr-only">
-            <span>Отговори</span>
+            <input type="radio" name="revise-type" value="flashcards" class="sr-only">
+            <span>Флаш карти</span>
           </label>
         </div>
       </fieldset>
