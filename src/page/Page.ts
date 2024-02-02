@@ -24,6 +24,7 @@ export default abstract class Page extends EventTarget {
     };
 
     private static readonly pages: Set<Page> = new Set();
+    static #notFoundPage: Page | null = null;
 
     public static app: HTMLDivElement | null = null;
 
@@ -34,25 +35,43 @@ export default abstract class Page extends EventTarget {
         }
     }
 
+    public static notFoundPage(page: Page) {
+        page._setApp(this.app!);
+        this.#notFoundPage = page;
+    }
+
     static #current: Page | null = null;
     public static get current(): Page {
         if (this.#current === null) throw new Error("No page is open");
         return this.#current;
     }
 
+    static #history: [string, string] = [location.href, location.href];
+    public static get history(): URL {
+        return new URL(this.#history[0]);
+    }
+
     private static destroy() {
         if (this.#current !== null) this.#current.destroy();
     }
 
-    public static open() {
+    private static getPage() {
         for (const page of this.pages) {
             if (page.matches(location)) {
-                this.destroy();
-                page.open().then();
-                this.#current = page;
-                break;
+                return page;
             }
         }
+        if (this.#notFoundPage !== null) return this.#notFoundPage;
+        else throw new Error("No page matches location; 404 page not defined");
+    }
+
+    public static open(updateHistory: boolean = true) {
+        const page = this.getPage();
+        this.destroy();
+        if (updateHistory) this.#history = [this.#history[1], location.href];
+        page.open().then();
+        this.#current = page;
+
         // use history pushState on all links
         const links = ([...document.querySelectorAll('a[href]:not([target]), a[href][target="_self"]')] as HTMLAnchorElement[]).filter(link => location.origin === new URL(link.href).origin);
 
